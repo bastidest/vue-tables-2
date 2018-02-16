@@ -96,8 +96,10 @@ module.exports = function (h) {
 
       rows.push(h(
         "transition",
-        null,
-        ["this.hasChildRow && this.openChildRows.includes(row[rowKey])?", h(
+        {
+          attrs: { name: "fade" }
+        },
+        [_this.hasChildRow && _this.openChildRows.includes(row[rowKey]) ? h(
           "tr",
           { "class": "VueTables__child-row" },
           [h(
@@ -107,7 +109,7 @@ module.exports = function (h) {
             },
             [_this._getChildRowTemplate(h, row)]
           )]
-        ), ":h()"]
+        ) : h()]
       ));
     });
 
