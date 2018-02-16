@@ -21,11 +21,7 @@ module.exports = function (h) {
     var filters = [];
     var filter;
 
-    if (_this.hasChildRow && _this.opts.childRowTogglerFirst) filters.push(h(
-      'th',
-      null,
-      []
-    ));
+    if (_this.hasChildRow && _this.opts.childRowTogglerFirst) filters.push(h('th', null));
 
     _this.allColumns.map(function (column) {
 
@@ -61,11 +57,7 @@ module.exports = function (h) {
       ));
     });
 
-    if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) filters.push(h(
-      'th',
-      null,
-      []
-    ));
+    if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) filters.push(h('th', null));
 
     return h(
       'tr',

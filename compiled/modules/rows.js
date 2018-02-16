@@ -61,15 +61,11 @@ module.exports = function (h) {
         var childRowToggler = h(
           "td",
           null,
-          [h(
-            "span",
-            {
-              on: {
-                "click": _this.toggleChildRow.bind(_this, row[rowKey])
-              },
-              "class": "VueTables__child-row-toggler " + _this.childRowTogglerClass(row[rowKey]) },
-            []
-          )]
+          [h("span", {
+            on: {
+              "click": _this.toggleChildRow.bind(_this, row[rowKey])
+            },
+            "class": "VueTables__child-row-toggler " + _this.childRowTogglerClass(row[rowKey]) })]
         );
         if (_this.opts.childRowTogglerFirst) columns.push(childRowToggler);
       }
@@ -98,17 +94,21 @@ module.exports = function (h) {
         [columns, " "]
       ));
 
-      rows.push(_this.hasChildRow && _this.openChildRows.includes(row[rowKey]) ? h(
-        "tr",
-        { "class": "VueTables__child-row" },
-        [h(
-          "td",
-          {
-            attrs: { colspan: _this.colspan }
-          },
-          [_this._getChildRowTemplate(h, row)]
-        )]
-      ) : h());
+      rows.push(h(
+        "transition",
+        null,
+        ["this.hasChildRow && this.openChildRows.includes(row[rowKey])?", h(
+          "tr",
+          { "class": "VueTables__child-row" },
+          [h(
+            "td",
+            {
+              attrs: { colspan: _this.colspan }
+            },
+            [_this._getChildRowTemplate(h, row)]
+          )]
+        ), ":h()"]
+      ));
     });
 
     return rows;
