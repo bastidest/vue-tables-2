@@ -63,6 +63,7 @@ module.exports = function () {
       align: 'center'
     },
     childRow: false,
+    childRowTransition: null,
     childRowTogglerFirst: true,
     uniqueKey: 'id',
     requestFunction: false,

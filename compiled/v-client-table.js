@@ -1,5 +1,9 @@
 'use strict';
 
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
 var _vuePagination = require('vue-pagination-2');
 
 var _vuex = require('./state/vuex');

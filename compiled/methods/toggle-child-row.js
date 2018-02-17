@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = function (rowId, e) {
 
@@ -6,7 +6,10 @@ module.exports = function (rowId, e) {
 
   if (this.openChildRows.includes(rowId)) {
     var index = this.openChildRows.indexOf(rowId);
-    this.openChildRows.splice(index, 1);
+    var removed = this.openChildRows.splice(index, 1)[0];
+    setTimeout(function () {
+      this.dispatch('closedChild', removed);
+    }.bind(this), 0);
   } else {
     this.openChildRows.push(rowId);
   }

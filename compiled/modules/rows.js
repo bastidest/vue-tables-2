@@ -1,5 +1,7 @@
 "use strict";
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 module.exports = function (h) {
   var _this = this;
 
@@ -94,23 +96,32 @@ module.exports = function (h) {
         [columns, " "]
       ));
 
-      rows.push(h(
-        "transition",
-        {
-          attrs: { name: "fade" }
-        },
-        [_this.hasChildRow && _this.openChildRows.includes(row[rowKey]) ? h(
-          "tr",
-          { "class": "VueTables__child-row" },
-          [h(
-            "td",
-            {
-              attrs: { colspan: _this.colspan }
-            },
-            [_this._getChildRowTemplate(h, row)]
-          )]
-        ) : h()]
-      ));
+      var childRowView = _this.hasChildRow && _this.openChildRows.includes(row[rowKey]) ? h(
+        "tr",
+        { "class": "VueTables__child-row" },
+        [h(
+          "td",
+          {
+            attrs: { colspan: _this.colspan }
+          },
+          [_this._getChildRowTemplate(h, row)]
+        )]
+      ) : h();
+
+      var transitionType = _typeof(_this.opts.childRowTransition);
+      if (transitionType === 'string') {
+        rows.push(h(
+          "transition",
+          {
+            attrs: { name: _this.opts.childRowTransition }
+          },
+          [childRowView]
+        ));
+      } else if (transitionType && transitionType === 'object') {
+        rows.push(h(_this.opts.childRowTransition, {}, [childRowView]));
+      } else {
+        rows.push(childRowView);
+      }
     });
 
     return rows;
