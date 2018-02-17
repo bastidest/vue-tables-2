@@ -26,16 +26,16 @@ module.exports = function () {
     columnsDisplay: {},
     columnsDropdown: false,
     texts: {
-      count: "Showing {from} to {to} of {count} records|{count} records|One record",
+      count: "Zeige Eintrag {from} bis {to} von {count}|{count} Einträge|Ein Eintrag",
       filter: "Filter:",
-      filterPlaceholder: "Search query",
-      limit: "Records:",
-      page: "Page:",
-      noResults: "No matching records",
-      filterBy: "Filter by {column}",
-      loading: 'Loading...',
+      filterPlaceholder: "Suche",
+      limit: "Einträge pro Seite:",
+      page: "Seite:",
+      noResults: "Keinen Eintrag gefunden",
+      filterBy: "Filtern nach {column}",
+      loading: 'Lade...',
       defaultOption: 'Select {column}',
-      columns: 'Columns'
+      columns: 'Spalten'
     },
     sortIcon: {
       is: 'glyphicon-sort',
@@ -65,6 +65,7 @@ module.exports = function () {
     childRow: false,
     childRowTransition: null,
     childRowTogglerFirst: true,
+    evenOddClasses: true,
     uniqueKey: 'id',
     requestFunction: false,
     requestAdapter: function requestAdapter(data) {

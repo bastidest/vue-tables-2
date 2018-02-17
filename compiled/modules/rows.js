@@ -85,6 +85,12 @@ module.exports = function (h) {
       if (_this.hasChildRow && !_this.opts.childRowTogglerFirst) columns.push(childRowToggler);
 
       rowClass = _this.opts.rowClassCallback ? _this.opts.rowClassCallback(row) : '';
+      if (_this.opts.evenOddClasses) {
+        if (rowClass && rowClass.length > 0) {
+          rowClass += " ";
+        }
+        rowClass += index % 2 === 0 ? "even" : "odd";
+      }
 
       rows.push(h(
         "tr",
